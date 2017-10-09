@@ -167,13 +167,3 @@ Example of inventory two nodes - 2 vip
     [graylogserver]
     jlsgraylog01l.btsys.local keepalived_master=True keepalived_vip1=True keepalived_vip2=True
     jlsgraylog02l.btsys.local keepalived_master=False
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
