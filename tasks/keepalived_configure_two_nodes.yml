@@ -1,0 +1,38 @@
+---
+- name: Upload Master keepalived.conf
+  template:
+    src="{{ keepalived_master_conf }}"
+    dest="{{ keepalived_config_path }}"
+  notify: "restart keepalived"
+  when: keepalived_master
+
+- name: Upload Backup keepalived.conf
+  template:
+    src="{{ keepalived_backup_conf }}"
+    dest="{{ keepalived_config_path }}"
+  notify: "restart keepalived"
+  when: not keepalived_master
+
+- name: Upload check state script
+  template:
+    src="{{ keepalived_checkstate }}"
+    dest="{{ keepalived_checkstate_path }}"
+    owner=root
+    group=root
+    mode=0755
+
+- name: Upload notify script
+  template:
+    src="{{ keepalived_notify }}"
+    dest="{{ keepalived_notify_path }}"
+    owner=root
+    group=root
+    mode=0755
+
+- name: Upload profile config
+  template:
+    src="{{ keepalived_profile }}"
+    dest="{{ keepalived_profile_path }}"
+    owner=root
+    group=root
+    mode=0755

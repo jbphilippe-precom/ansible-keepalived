@@ -1,0 +1,18 @@
+---
+## Pre requis ##
+- name: "Install python-apt (dependency for Ansible apt_repository)"
+  apt:
+    name="python-apt"
+    state=present
+    update_cache=true
+
+- name: "Retrieve and install apt key"
+  apt_key:
+    url="{{ keepalived_apt_key }}"
+    state=present
+
+- name: "Add repository"
+  apt_repository:
+    repo='{{ keepalived_apt_repo }}'
+    state=present
+  when: ansible_distribution_release == "trusty"

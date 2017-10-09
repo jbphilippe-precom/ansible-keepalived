@@ -1,0 +1,13 @@
+---
+- name: "Install keepalived"
+  apt:
+    name="{{ keepalived_service_name }}"
+    state=latest
+    update_cache=true
+
+- name: "Install curl (for checking etcd state)"
+  apt:
+    name="curl"
+    state=latest
+    update_cache=true
+  when: keepalived_with_etcd

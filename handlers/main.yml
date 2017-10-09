@@ -1,0 +1,7 @@
+---
+# handlers file for ansible-keepalived
+- name: restart keepalived
+  become: yes
+  service:
+    name="{{ keepalived_service_name }}"
+    state=restarted

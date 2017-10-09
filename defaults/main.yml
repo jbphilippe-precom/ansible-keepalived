@@ -1,0 +1,61 @@
+---
+# defaults file for ansible-keepalived
+
+## APT ##
+keepalived_apt_repo: "deb http://mirror.services.local/keepalived/ubuntu trusty main"
+keepalived_apt_key: "http://mirror.services.local/pubkey/keepalived.gpg.pub"
+
+## Configuration ##
+keepalived_interface: eth0
+keepalived_virtual_router_id: 42
+keepalived_virtual_router_id_vip1: 21
+keepalived_virtual_router_id_vip2: 42
+
+## template ##
+## 2 nodes 1 vip ##
+keepalived_backup_conf: "keepalived_backup.conf.tpl"
+keepalived_checkstate: "keepalived_checkstate.sh.tpl"
+keepalived_master_conf: "keepalived_master.conf.tpl"
+keepalived_notify: "keepalived_notify.sh.tpl"
+keepalived_profile: "keepalived_profile.sh.tpl"
+
+## 2 nodes 2 vip ##
+keepalived_interface_vip1: eth0
+keepalived_interface_vip2: eth1
+keepalived_master_two_nodes_two_vip_conf: "keepalived_master_two_nodes_two_vip.conf.tpl"
+keepalived_backup_two_nodes_two_vip_conf: "keepalived_backup_two_nodes_two_vip.conf.tpl"
+keepalived_profile_two_vip: "keepalived_profile_two_vip.sh.tpl"
+
+## 3 nodes 2 vip ##
+keepalived_master_vip1_conf: "keepalived_master_vip1.conf"
+keepalived_master_vip2_conf: "keepalived_master_vip2.conf"
+keepalived_backup_three_nodes_conf: "keepalived_backup_three_nodes.conf.tpl"
+keepalived_notify_vip1: "keepalived_notify_vip1.sh.tpl"
+keepalived_notify_vip2: "keepalived_notify_vip2.sh.tpl"
+keepalived_profile_vip1: "keepalived_profile_vip1.sh.tpl"
+keepalived_profile_vip2: "keepalived_profile_vip2.sh.tpl"
+keepalived_profile_backup_three_nodes: "keepalived_profile_backup_three_nodes.sh.tpl"
+
+## DEST PATH ##
+keepalived_config_path: "/etc/keepalived/keepalived.conf"
+keepalived_checkstate_path: "/usr/local/sbin/check_state_keep.sh"
+keepalived_notify_path: "/usr/local/sbin/notify-keepalived.sh"
+keepalived_profile_path: "/etc/profile.d/keepalived_status.sh"
+keepalived_notify_path_vip1: "/usr/local/sbin/notify-keepalived_vip1.sh"
+keepalived_notify_path_vip2: "/usr/local/sbin/notify-keepalived_vip2.sh"
+
+keepalived_service_name: "keepalived"
+
+keepalived_two_nodes: False
+keepalived_three_nodes: False
+keepalived_two_nodes_two_vip: False
+keepalived_vip1: False
+keepalived_vip2: False
+keepalived_master: False
+keepalived_nopreempt: True
+
+
+## Check quorum with etcd ##
+keepalived_with_etcd: False
+keepalived_etcd_port : 2379
+keepalived_etcd_addr: 127.0.0.1

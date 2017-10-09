@@ -1,0 +1,9 @@
+---
+- include: keepalived_configure_two_nodes.yml
+  when: keepalived_two_nodes
+
+- include: keepalived_configure_three_nodes.yml
+  when: keepalived_three_nodes
+
+- include: keepalived_configure_two_nodes_two_vip.yml
+  when: keepalived_two_nodes_two_vip

@@ -1,0 +1,72 @@
+---
+- name: Upload Master VIP1 keepalived.conf
+  template:
+    src="{{ keepalived_master_vip1_conf }}"
+    dest="{{ keepalived_config_path }}"
+  notify: "restart keepalived"
+  when: keepalived_master and keepalived_vip1
+
+- name: Upload Master VIP2 keepalived.conf
+  template:
+    src="{{ keepalived_master_vip2_conf }}"
+    dest="{{ keepalived_config_path }}"
+  notify: "restart keepalived"
+  when: keepalived_master and keepalived_vip2
+
+- name: Upload Backup keepalived.conf
+  template:
+    src="{{ keepalived_backup_three_nodes_conf }}"
+    dest="{{ keepalived_config_path }}"
+  notify: "restart keepalived"
+  when: not keepalived_master
+
+- name: Upload notify script vip1
+  template:
+    src="{{ keepalived_notify_vip1 }}"
+    dest="{{ keepalived_notify_path_vip1 }}"
+    owner=root
+    group=root
+    mode=0755
+
+- name: Upload notify script vip2
+  template:
+    src="{{ keepalived_notify_vip2 }}"
+    dest="{{ keepalived_notify_path_vip2 }}"
+    owner=root
+    group=root
+    mode=0755
+
+- name: Upload check state script
+  template:
+    src="{{ keepalived_checkstate }}"
+    dest="{{ keepalived_checkstate_path }}"
+    owner=root
+    group=root
+    mode=0755
+
+- name: Upload profile config vip1
+  template:
+    src="{{ keepalived_profile_vip1 }}"
+    dest="{{ keepalived_profile_path }}"
+    owner=root
+    group=root
+    mode=0755
+  when: keepalived_master and keepalived_vip1
+
+- name: Upload profile config vip2
+  template:
+    src="{{ keepalived_profile_vip2 }}"
+    dest="{{ keepalived_profile_path }}"
+    owner=root
+    group=root
+    mode=0755
+  when: keepalived_master and keepalived_vip2
+
+- name: Upload profile config backup
+  template:
+    src="{{ keepalived_profile_backup_three_nodes }}"
+    dest="{{ keepalived_profile_path }}"
+    owner=root
+    group=root
+    mode=0755
+  when: not keepalived_master and not keepalived_vip1

@@ -1,0 +1,16 @@
+---
+
+- include: keepalived_set_repository.yml
+  become: yes
+
+- include: keepalived_install_package.yml
+  become: yes
+
+- include: keepalived_configure.yml
+  become: yes
+
+#- include: keepalived_security.yml
+#  become: yes
+
+#- include: keepalived_system_optimization.yml
+#  become: yes
